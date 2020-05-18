@@ -1,9 +1,6 @@
 package com.czkj.permission.service.impl;
 
-import com.czkj.common.entity.TabPermission;
-import com.czkj.common.entity.TabPermissionUrl;
-import com.czkj.common.entity.TabRolePermission;
-import com.czkj.common.entity.TabSubscriber;
+import com.czkj.common.entity.*;
 import com.czkj.permission.dao.MenuDao;
 import com.czkj.permission.service.MenuService;
 import com.czkj.utils.PageResult;
@@ -48,8 +45,6 @@ public class MenuServiceImpl implements MenuService {
             String key = menuDao.savePermission(tabPermission.getName(),tabPermission.getRemark());
             //获取url数据，添加权限对应url
             if (null!= tabPermission.getUrlList() && tabPermission.getUrlList().size()> 0) {
-                //先删除原先url记录,重新添加
-                menuDao.deletePerUrlByPerId(tabPermission.getId());
                 //数组去重
                 for (int i = 0; i < tabPermission.getUrlList().size(); i++) {
                     if (!list.contains(tabPermission.getUrlList().get(i))){
@@ -114,7 +109,7 @@ public class MenuServiceImpl implements MenuService {
             }
         }
         if (StringUtils.isNotBlank(url)) {
-            TabPermissionUrl tabPermissionUrl = menuDao.queryPerUrlByUrl(url);
+            TabPermissionUrl tabPermissionUrl = getPerUrlByUrl(url,keyId);
             if (null != tabPermissionUrl) {
                 return false;
             }
@@ -152,8 +147,12 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public TabPermission getPermissionAndRole(String pid) {
-        return menuDao.queryPermissionAndRole(pid);
+    public  List<TabRole> getRoleList(String pid){
+        return menuDao.queryRoleList(pid);
     }
 
+    @Override
+    public TabPermissionUrl getPerUrlByUrl(String url, String perId) {
+        return menuDao.queryPerUrlByUrl(url,perId);
+    }
 }

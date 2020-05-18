@@ -92,7 +92,7 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public List<TabPermission> queryPermissionListByRole(String rid) {
-        String permissionSql = "select p.id from tab_permission p RIGHT JOIN  tab_role_permission rp on p.id=rp.sys_permission_id left JOIN  tab_role r on r.id=rp.sys_role_id where r.id=?";
+        String permissionSql = "select p.id,p.name from tab_permission p RIGHT JOIN  tab_role_permission rp on p.id=rp.sys_permission_id left JOIN  tab_role r on r.id=rp.sys_role_id where r.id=?";
         List<TabPermission> permissions = jdbcTemplate.query(permissionSql, new BeanPropertyRowMapper<>(TabPermission.class), rid);
         if (permissions.size() > 0) {
             for (int i = 0; i < permissions.size(); i++) {
@@ -133,12 +133,12 @@ public class RoleDaoImpl implements RoleDao {
                 tabRole.getId());
     }
 
-    @Override
-    public List<TabRolePermission> queryRelationByRoleId(String roleId) {
-        String sql = "select id from tab_role_permission where 1=1 and sys_role_id=?";
-        List<TabRolePermission> tabRolePermissionList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TabRolePermission.class), roleId);
-        return tabRolePermissionList;
-    }
+//    @Override
+//    public List<TabRolePermission> queryRelationByRoleId(String roleId) {
+//        String sql = "select id from tab_role_permission where 1=1 and sys_role_id=?";
+//        List<TabRolePermission> tabRolePermissionList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TabRolePermission.class), roleId);
+//        return tabRolePermissionList;
+//    }
 
     @Override
     public void deleteRoleAndPer(String roleId) {
@@ -165,6 +165,7 @@ public class RoleDaoImpl implements RoleDao {
             tabRole.setId(sqlRowSet.getString("id"));
             tabRole.setCode(sqlRowSet.getString("code"));
             tabRole.setName(sqlRowSet.getString("name"));
+            tabRole.setAvailable(sqlRowSet.getString("available"));
             return tabRole;
         }
         return null;

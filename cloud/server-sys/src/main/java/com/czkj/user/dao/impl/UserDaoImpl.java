@@ -161,7 +161,7 @@ public class UserDaoImpl<T> implements UserDao<T> {
 
     @Override
     public List<TabRole> queryRoleList(String userId) {
-        String sql = "select role.id from tab_role role right JOIN tab_user_role userRole on role.id=userRole.sys_role_id left JOIN tab_subscriber user on userRole.sys_user_id = user.id where user.id=?";
+        String sql = "select role.id,role.name from tab_role role right JOIN tab_user_role userRole on role.id=userRole.sys_role_id left JOIN tab_subscriber user on userRole.sys_user_id = user.id where user.id=?";
         List<TabRole> roleList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TabRole.class), userId);
         return roleList;
     }

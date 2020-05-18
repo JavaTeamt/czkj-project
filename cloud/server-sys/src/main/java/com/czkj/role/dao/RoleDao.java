@@ -62,13 +62,13 @@ public interface RoleDao {
      */
     void updateRoleById(TabRole tabRole);
 
-    /**
-     * 根据角色id获取关系表数据
-     *
-     * @param roleId 角色id
-     * @return
-     */
-    List<TabRolePermission> queryRelationByRoleId(String roleId);
+//    /**
+//     * 根据角色id获取关系表数据
+//     *
+//     * @param roleId 角色id
+//     * @return
+//     */
+//    List<TabRolePermission> queryRelationByRoleId(String roleId);
 
     /**
      * 删除角色权限关系表指定指定角色id数据

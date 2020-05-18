@@ -114,10 +114,10 @@ public class RoleServiceImpl implements RoleService {
         return false;
     }
 
-    @Override
-    public List<TabRolePermission> queryByRoleId(String roleId) {
-        return roleDao.queryRelationByRoleId(roleId);
-    }
+//    @Override
+//    public List<TabRolePermission> queryByRoleId(String roleId) {
+//        return roleDao.queryRelationByRoleId(roleId);
+//    }
 
     @Override
     public List<TabPermission> queryPermissionListByRole(String rid) {

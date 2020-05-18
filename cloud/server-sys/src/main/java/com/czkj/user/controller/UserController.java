@@ -320,7 +320,17 @@ public class UserController {
         //查询用户是否绑定角色
         List<TabRole> roleListByUId = userService.getRoleListByUId(userName);
         if (roleListByUId.size() > 0) {
-            return Response.failure("4018", "抱歉不能删除用户,有角色绑定");
+            //初始化
+            String roleName = "";
+            //遍历角色数据，字符串拼接
+            for(int i =0;i<roleListByUId.size();i++){
+                if (i>0){
+                    roleName+=",";
+                }
+                roleName+=roleListByUId.get(i).getName();
+            }
+            log.info("角色="+roleName);
+            return Response.failure("4018", "抱歉不能删除该用户,有角色["+roleName+"]绑定");
         } else {
             boolean b = userService.deleteUser(userName);
             if (b) {

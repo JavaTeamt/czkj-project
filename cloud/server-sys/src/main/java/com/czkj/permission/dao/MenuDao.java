@@ -2,6 +2,7 @@ package com.czkj.permission.dao;
 
 import com.czkj.common.entity.TabPermission;
 import com.czkj.common.entity.TabPermissionUrl;
+import com.czkj.common.entity.TabRole;
 import com.czkj.utils.PageResult;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public interface MenuDao {
 
 
     /**
-     * 根据资源id查询对应URL信息
+     * 根据权限id查询对应URL信息
      * @param perId 权限id
      * @return
      */
@@ -84,9 +85,10 @@ public interface MenuDao {
     /**
      * 查询用户输入的url是否存在
      * @param url url
+     * @param perId 权限主键id-用于修改校验的标识
      * @return
      */
-    TabPermissionUrl queryPerUrlByUrl(String url);
+    TabPermissionUrl queryPerUrlByUrl(String url,String perId);
 
 
     /**
@@ -104,9 +106,10 @@ public interface MenuDao {
     void updatePerUrlAvailable(String available, String perId);
 
     /**
-     * 查询权限及对应角色信息
+     * 查询权限对应角色信息
      * @param pid 资源id
      * @return
      */
-    TabPermission queryPermissionAndRole(String pid);
+    List<TabRole> queryRoleList(String pid);
+
 }

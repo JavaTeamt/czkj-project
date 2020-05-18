@@ -2,6 +2,7 @@ package com.czkj.permission.service;
 
 import com.czkj.common.entity.TabPermission;
 import com.czkj.common.entity.TabPermissionUrl;
+import com.czkj.common.entity.TabRole;
 import com.czkj.common.entity.TabRolePermission;
 import com.czkj.utils.PageResult;
 
@@ -72,11 +73,18 @@ public interface MenuService {
     boolean enablePermission(String key);
 
     /**
-     * 查询资源及对应角色信息
+     * 查询资源对应角色信息
      * @param pid 资源id
      * @return
      */
-    TabPermission getPermissionAndRole(String pid);
+    List<TabRole> getRoleList(String pid);
 
+    /**
+     * 获取URL对应权限的id
+     * @param url url
+     * @param perId 权限主键id-用于修改判断的标识
+     * @return
+     */
+    TabPermissionUrl getPerUrlByUrl(String url,String perId);
 
 }

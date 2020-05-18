@@ -70,12 +70,12 @@ public interface RoleService {
      */
     boolean deleteRole(String roleId);
 
-    /**
-     * 根据角色id查询关系表中是否存在数据
-     * @param roleId
-     * @return
-     */
-    List<TabRolePermission> queryByRoleId(String roleId);
+//    /**
+//     * 根据角色id查询关系表中是否存在数据
+//     * @param roleId
+//     * @return
+//     */
+//    List<TabRolePermission> queryByRoleId(String roleId);
 
     /**
      * 获取角色对应权限id，用于id绑定，显示用户绑定的权限

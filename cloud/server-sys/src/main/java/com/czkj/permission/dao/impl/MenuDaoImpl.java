@@ -2,6 +2,7 @@ package com.czkj.permission.dao.impl;
 
 import com.czkj.common.entity.TabPermission;
 import com.czkj.common.entity.TabPermissionUrl;
+import com.czkj.common.entity.TabRole;
 import com.czkj.permission.dao.MenuDao;
 import com.czkj.utils.PageResult;
 import lombok.extern.slf4j.Slf4j;
@@ -131,13 +132,14 @@ public class MenuDaoImpl implements MenuDao {
 
     @Override
     public TabPermission queryPermission(String key) {
-        String sql = "select id,name,remark from tab_permission where id=?";
+        String sql = "select id,name,remark,available from tab_permission where id=?";
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, key);
         while (sqlRowSet.next()) {
             TabPermission tabPermission = new TabPermission();
             tabPermission.setId(sqlRowSet.getString("id"));
             tabPermission.setName(sqlRowSet.getString("name"));
             tabPermission.setRemark(sqlRowSet.getString("remark"));
+            tabPermission.setAvailable(sqlRowSet.getString("available"));
             List<TabPermissionUrl> permissionUrls = queryAllUrlList(tabPermission.getId());
             if (permissionUrls.size() > 0) {
                 tabPermission.setUrlList(permissionUrls);
@@ -169,11 +171,11 @@ public class MenuDaoImpl implements MenuDao {
     @Override
     public TabPermission queryPerByName(String name, String keyId) {
         SqlRowSet sqlRowSet = null;
+        String sql = "select name from tab_permission where name=? ";
         if (StringUtils.isNotBlank(keyId)) {
-            String sql = "select name from tab_permission where name=? and id<>?";
+            sql += "and id<>?";
             sqlRowSet = jdbcTemplate.queryForRowSet(sql, name, keyId);
         } else {
-            String sql = "select name from tab_permission where name=?";
             sqlRowSet = jdbcTemplate.queryForRowSet(sql, name);
         }
         while (sqlRowSet.next()) {
@@ -185,12 +187,20 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
-    public TabPermissionUrl queryPerUrlByUrl(String url) {
-        String sql = "select name from tab_permission_url where name=?";
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, url);
+    public TabPermissionUrl queryPerUrlByUrl(String url, String perId) {
+        SqlRowSet sqlRowSet = null;
+        String sql = "select name,per_id from tab_permission_url where name=? ";
+        if (StringUtils.isNotBlank(perId)) {
+            sql += "and per_id<>?";
+            sqlRowSet = jdbcTemplate.queryForRowSet(sql, url, perId);
+        } else {
+            sqlRowSet = jdbcTemplate.queryForRowSet(sql, url);
+        }
         while (sqlRowSet.next()) {
             TabPermissionUrl tabPermissionUrl = new TabPermissionUrl();
-            tabPermissionUrl.setName(url);
+            tabPermissionUrl.setName(sqlRowSet.getString("name"));
+            tabPermissionUrl.setPerId(sqlRowSet.getString("per_id"));
+            return tabPermissionUrl;
         }
         return null;
     }
@@ -208,14 +218,9 @@ public class MenuDaoImpl implements MenuDao {
     }
 
     @Override
-    public TabPermission queryPermissionAndRole(String pid) {
-        String sql = "select p.name from tab_permission p RIGHT JOIN tab_role_permission rp on p.id=rp.sys_permission_id LEFT JOIN tab_role r on r.id=sys_role_id where p.id=?";
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, pid);
-        while (sqlRowSet.next()) {
-            TabPermission tabRolePermission = new TabPermission();
-            tabRolePermission.setName(sqlRowSet.getString("name"));
-            return tabRolePermission;
-        }
-        return null;
+    public List<TabRole> queryRoleList(String pid) {
+        String sql = "select r.name from tab_permission p RIGHT JOIN tab_role_permission rp on p.id=rp.sys_permission_id LEFT JOIN tab_role r on r.id=sys_role_id where p.id=?";
+        List<TabRole> tabRoles = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TabRole.class), pid);
+        return tabRoles;
     }
 }

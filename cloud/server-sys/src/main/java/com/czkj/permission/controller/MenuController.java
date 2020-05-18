@@ -1,6 +1,8 @@
 package com.czkj.permission.controller;
 
 import com.czkj.common.entity.TabPermission;
+import com.czkj.common.entity.TabPermissionUrl;
+import com.czkj.common.entity.TabRole;
 import com.czkj.common.entity.TabRolePermission;
 import com.czkj.exception.ExceptionHandleAdvice;
 import com.czkj.permission.service.MenuService;
@@ -37,9 +39,9 @@ public class MenuController {
             @ApiImplicitParam(name = "name", value = "权限名", paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "available", value = " 是否可用标识", paramType = "query", required = false, dataType = "String")})
     @GetMapping("/getAllList")
-    public Response<PageResult> getAllList(String available,String name,Integer currentPage, Integer size) {
+    public Response<PageResult> getAllList(String available, String name, Integer currentPage, Integer size) {
         log.info("是否可用：" + available + ",当前页：" + currentPage + ",每页显示条数：" + size);
-        PageResult<TabPermission> pageResult = menuService.getAllList(available,name, currentPage, size);
+        PageResult<TabPermission> pageResult = menuService.getAllList(available, name, currentPage, size);
         return Response.success().data(pageResult);
     }
 
@@ -68,8 +70,13 @@ public class MenuController {
     @ApiOperation(value = "修改对应权限数据", notes = "修改对应权限数据")
     @RequestMapping(value = "/updatePerByKey", produces = "application/json", method = RequestMethod.PUT)
     public Response updatePerByKey(@RequestBody TabPermission tabPermission) {
-        if (StringUtils.isBlank(tabPermission.getId())){
-            return Response.failure("5069","主键不能为空");
+        if (StringUtils.isBlank(tabPermission.getId())) {
+            return Response.failure("5069", "主键不能为空");
+        } else {
+            String available = menuService.getPermissionByKey(tabPermission.getId()).getAvailable();
+            if ("0".equals(available)) {
+                return Response.failure("5488", "不能操作已经废弃的权限");
+            }
         }
         Response response = vlidate(tabPermission);
         if ("0".equals(response.getCode())) {
@@ -83,6 +90,7 @@ public class MenuController {
     }
 
     private Response vlidate(TabPermission tabPermission) {
+
         //先进行表单的一些校验，校验成功进行用户注册
         if (StringUtils.isNotBlank(tabPermission.getName())) {
             boolean result = menuService.queryExit(tabPermission.getName(), null, tabPermission.getId());
@@ -95,10 +103,18 @@ public class MenuController {
         }
         if (null != tabPermission.getUrlList() && tabPermission.getUrlList().size() > 0) {
             for (int i = 0; i < tabPermission.getUrlList().size(); i++) {
+                if (StringUtils.isBlank(tabPermission.getUrlList().get(i).getName())) {
+                    return Response.failure("5023", "url不能为空");
+                }
+                log.info("URL=" + tabPermission.getUrlList().get(i).getName());
                 boolean result = menuService.queryExit(null, tabPermission.getUrlList().get(i).getName(), tabPermission.getId());
                 if (!result) {
+                    //获取对应URL绑定的权限id
+                    String perId = menuService.getPerUrlByUrl(tabPermission.getUrlList().get(i).getName(), tabPermission.getId()).getPerId();
+                    //根据权限id获取权限名
+                    String perName = menuService.getPermissionByKey(perId).getName();
                     //URL已存在
-                    return Response.failure("5121", "URL:" + tabPermission.getUrlList().get(i).getName() + "已存在");
+                    return Response.failure("5121", "URL:" + tabPermission.getUrlList().get(i).getName() + "已绑定权限[" + perName + "]，请先取消绑定");
                 }
             }
         }
@@ -109,16 +125,30 @@ public class MenuController {
     @ApiImplicitParam(name = "key", value = "主键id", required = true, paramType = "query", dataType = "String")
     @PutMapping("/deleteTabPermission")
     public Response deleteTabPermission(String key) {
-        if (StringUtils.isBlank(key)){
-            return Response.failure("5068","主键不能为空");
-        }
-        TabPermission permissionAndRole = menuService.getPermissionAndRole(key);
-        if (null != permissionAndRole) {
-            return Response.failure("4008", permissionAndRole.getName() + "权限不能废弃，有角色关联-_-");
+        if (StringUtils.isBlank(key)) {
+            return Response.failure("5068", "主键不能为空");
         } else {
-            boolean result = menuService.deleteTabpermission(key);
-            if (result) {
-                return Response.success().message("废弃成功");
+            String available = menuService.getPermissionByKey(key).getAvailable();
+            if ("0".equals(available)) {
+                return Response.failure("5489", "该权限已是禁用状态");
+            }
+            List<TabRole> roleList = menuService.getRoleList(key);
+            if (roleList.size() > 0) {
+                //初始化
+                String roleName = "";
+                //遍历角色数据，字符串拼接
+                for (int i = 0; i < roleList.size(); i++) {
+                    if (i > 0) {
+                        roleName += ",";
+                    }
+                    roleName += roleList.get(i).getName();
+                }
+                return Response.failure("4008", "权限不能废弃，有角色[" + roleName + "]关联-_-");
+            } else {
+                boolean result = menuService.deleteTabpermission(key);
+                if (result) {
+                    return Response.success().message("废弃成功");
+                }
             }
         }
         return Response.failure("废弃失败,请检查原因");
@@ -128,8 +158,13 @@ public class MenuController {
     @ApiImplicitParam(name = "key", value = "主键id", required = true, paramType = "query", dataType = "String")
     @PutMapping("/enablePerById")
     public Response enablePerById(String key) {
-        if (StringUtils.isBlank(key)){
-            return Response.failure("5070","主键不能为空");
+        if (StringUtils.isBlank(key)) {
+            return Response.failure("5070", "主键不能为空");
+        } else {
+            String available = menuService.getPermissionByKey(key).getAvailable();
+            if ("1".equals(available)) {
+                return Response.failure("5487", "该权限已是启用状态");
+            }
         }
         boolean b = menuService.enablePermission(key);
         if (b) {

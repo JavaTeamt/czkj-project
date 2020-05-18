@@ -86,10 +86,10 @@ public class RoleController {
 
     @ApiOperation(value = "保存角色信息", notes = "保存角色信息")
     @RequestMapping(value = "/saveRole", produces = "application/json", method = RequestMethod.POST)
-    public Response saveRole(@RequestBody @Validated TabRole tabRole,BindingResult bindingResult) {
+    public Response saveRole(@RequestBody @Validated TabRole tabRole, BindingResult bindingResult) {
         log.info("角色名:" + tabRole.getName(), "," + "角色编码:" + tabRole.getCode());
         log.info("权限id:" + tabRole.getTabPermissions());
-        Response response = validateRole(tabRole.getName(), tabRole.getCode(), null,bindingResult);
+        Response response = validateRole(tabRole.getName(), tabRole.getCode(), null, bindingResult);
         //验证成功则进行添加
         if ("0".equals(response.getCode())) {
             log.info("检验结果:" + response.getCode());
@@ -112,12 +112,17 @@ public class RoleController {
 
     @ApiOperation(value = "修改指定角色信息", notes = "修改指定角色信息")
     @RequestMapping(value = "/updateRole", produces = "application/json", method = RequestMethod.PUT)
-    public Response updateRole(@RequestBody @Validated TabRole tabRole,BindingResult bindingResult) {
+    public Response updateRole(@RequestBody @Validated TabRole tabRole, BindingResult bindingResult) {
         System.out.println("角色id：" + tabRole.getId());
-        if (null==tabRole.getId()){
-            return Response.failure("2565","主键不能为空");
+        if (null == tabRole.getId()) {
+            return Response.failure("2565", "主键不能为空");
+        } else {
+            String available = roleService.queryRoleById(tabRole.getId()).getAvailable();
+            if ("0".equals(available)) {
+                return Response.failure("6236","不能操作废弃的角色");
+            }
         }
-        Response response = validateRole(tabRole.getName(), tabRole.getCode(), tabRole.getId(),bindingResult);
+        Response response = validateRole(tabRole.getName(), tabRole.getCode(), tabRole.getId(), bindingResult);
         //验证成功则进行添加
         if ("0".equals(response.getCode())) {
             log.info("权限id:" + tabRole.getTabPermissions());
@@ -134,18 +139,32 @@ public class RoleController {
     @ApiImplicitParam(name = "roleId", value = "角色id，删除", paramType = "query", required = true, dataType = "String")
     @DeleteMapping("/deleteRole")
     public Response deleteRole(String roleId) {
-        if (StringUtils.isBlank(roleId)){
-            return Response.failure("2565","主键不能为空");
+        if (StringUtils.isBlank(roleId)) {
+            return Response.failure("2565", "主键不能为空");
+        } else {
+            String available = roleService.queryRoleById(roleId).getAvailable();
+            if ("0".equals(available)) {
+                return Response.failure("6237","此角色已是禁用状态");
+            }
         }
-        List<TabRolePermission> tabRolePermissionList = roleService.queryByRoleId(roleId);
-        if (tabRolePermissionList.size() > 0) {
-            return Response.failure("4014", "不能删除绑定权限的角色");
+        List<TabPermission> permissionList = roleService.queryPermissionListByRole(roleId);
+        if (permissionList.size() > 0) {
+            //初始化
+            String perName = "";
+            //遍历角色数据，字符串拼接
+            for(int i =0;i<permissionList.size();i++){
+                if (i>0){
+                    perName+=",";
+                }
+                perName+=permissionList.get(i).getName();
+            }
+            return Response.failure("4014", "不能禁用该角色,有权限["+perName+"]绑定");
         }
         boolean result = roleService.deleteRole(roleId);
         if (result) {
-            return Response.success().message("删除成功");
+            return Response.success().message("禁用成功");
         }
-        return Response.failure("删除失败");
+        return Response.failure("禁用失败,服务异常");
 
     }
 
@@ -170,11 +189,16 @@ public class RoleController {
     })
     @PostMapping("/savePermission")
     public Response savePermission(String[] perIds, String roleId) {
-        if (perIds.length<0){
-            return Response.failure("5034","请选择权限");
+        if (perIds.length < 0) {
+            return Response.failure("5034", "请选择权限");
         }
-        if (StringUtils.isBlank(roleId)){
-            return Response.failure("5033","主键不能为空");
+        if (StringUtils.isBlank(roleId)) {
+            return Response.failure("5033", "主键不能为空");
+        }else {
+            String available = roleService.queryRoleById(roleId).getAvailable();
+            if ("0".equals(available)) {
+                return Response.failure("6234","不能操作已经废弃的角色");
+            }
         }
         boolean result = roleService.savePermissionAndRole(perIds, roleId);
         if (result) {
@@ -187,7 +211,7 @@ public class RoleController {
     @ApiImplicitParam(name = "perName", value = "权限名", paramType = "query", dataType = "String")
     @GetMapping("/getPermissionList")
     public List<TabPermission> getPermissionList(String perName) {
-        PageResult<TabPermission> pageResult = menuService.getAllList("1",perName,null, null);
+        PageResult<TabPermission> pageResult = menuService.getAllList("1", perName, null, null);
         List<TabPermission> items = pageResult.getItems();
         return items;
     }
@@ -195,20 +219,17 @@ public class RoleController {
     @ApiOperation(value = "启用角色", notes = "启用角色")
     @ApiImplicitParam(name = "roleId", value = "角色id", paramType = "query", required = true, dataType = "String")
     @PutMapping("/enableRole")
-    public Response enableRole(String roleId){
-        if (StringUtils.isBlank(roleId)){
-            return Response.failure("2565","主键不能为空");
-        }else {
-            TabRole tabRole = roleService.queryRoleById(roleId);
-            if (null!=tabRole){
-                String available = tabRole.getAvailable();
-                if ("1".equals(available)){
-                    return Response.failure("此角色已是启用状态");
-                }
+    public Response enableRole(String roleId) {
+        if (StringUtils.isBlank(roleId)) {
+            return Response.failure("2565", "主键不能为空");
+        } else {
+            String available = roleService.queryRoleById(roleId).getAvailable();
+            if ("1".equals(available)) {
+                return Response.failure("6235","此角色已是启用状态");
             }
         }
         boolean result = roleService.enableRole(roleId);
-        if (result){
+        if (result) {
             return Response.success("启用成功");
         }
         return Response.failure("启用失败,服务异常");

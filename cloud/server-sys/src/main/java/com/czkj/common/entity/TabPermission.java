@@ -32,6 +32,9 @@ public class TabPermission implements Serializable {
     @ApiModelProperty(value = "url集合，一个权限对应多条url",name = "urlList")
     private List<TabPermissionUrl> urlList=new ArrayList<>();
 
+    @ApiModelProperty(value = "角色集合，一个权限对应多个角色",name = "roleList",hidden = true)
+    private List<TabRole> roleList = new ArrayList<>();
+
     public String getId() {
         return id;
     }
