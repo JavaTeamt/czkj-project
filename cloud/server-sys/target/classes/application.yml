@@ -1,0 +1,22 @@
+server:
+  port: 8767
+
+#引入开发环境配置
+spring:
+  profiles:
+    active: dev
+  #定义服务名
+  application:
+    name: server-sys
+
+  #设置链路跟踪跟踪此服务
+  zipkin:
+    base-url: http://localhost:9411
+    sleuth:
+      sampler:
+        percentage: 1.0
+#注册服务
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@peer1:8761/eureka/

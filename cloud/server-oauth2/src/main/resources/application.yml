@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin@peer1:8761/eureka/
+server:
+  port: 8763
+spring:
+  application:
+    name: server-oauth2
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+    sleuth:
+      sampler:
+        probability: 1.0
+  profiles:
+    active: dev
+
+management:
+  endpoint:
+    health:
+      enabled: true

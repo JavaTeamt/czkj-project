@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/su?serverTimezone=UTC&characterEncoding=utf-8
+    password: root
+    username: root
+    max-active: 10
+    min-idle: 5

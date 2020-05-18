@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="97b83087-c110-4ae8-9a1b-4ee0465ac9ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cloud/common/src/main/java/com/czkj/utils/Base.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/PermissionServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/common/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/controller/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/dao/MenuDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/dao/impl/MenuDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/entity/TabPermission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/entity/TabRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/entity/TabRolePermission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/service/MenuService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/java/com/czkj/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/permission-server/src/test/java/com/czkj/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/dao/impl/LoginDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/entity/TabSubscriber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/common/PageResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/common/SystemConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/config/ConfigurationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/dao/impl/UserDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/entity/TabCustomer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/entity/TabSubscriber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/entity/vo/CustomerAndUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/entity/vo/CustomerAndUserVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/server-user/src/main/webapp/testUpload.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud" beforeDir="false" afterPath="$PROJECT_DIR$/cloud" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/cloud.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/permission-server/permission-server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/src/main/java/com/czkj/entity/TSysUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/src/main/java/com/czkj/filter/TokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/src/main/java/com/czkj/filter/TokenFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/classes/com/czkj/entity/TSysUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/classes/com/czkj/filter/TokenFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/target/classes/com/czkj/filter/TokenFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/target/common-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/common-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/target/common-1.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-cas/src/main/java/com/czkj/cas/config/ConfigurationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-cas/src/main/java/com/czkj/cas/config/ConfigurationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2-router/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2-router/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2-router/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2-router/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/ServerOauth2Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/ServerOauth2Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/dao/LoginMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/dao/LoginDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/service/impl/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2/src/main/java/com/czkj/auth/service/impl/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-oauth2/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-oauth2/src/main/resources/mapper/login.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/src/main/java/com/czkj/router/ServerRouterApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/src/main/java/com/czkj/router/filter/GlobalFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-router/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/server-user.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/UserServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/UserServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/dao/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/src/main/java/com/czkj/serveruser/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/main/resources/mapper/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/src/test/java/com/czkj/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/src/test/java/com/czkj/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/META-INF/server-user.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/target/classes/META-INF/server-user.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/target/classes/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/UserServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/UserServerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/serveruser/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/serveruser/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/serveruser/dao/UserMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/serveruser/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/serveruser/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/serveruser/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/target/classes/com/czkj/serveruser/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/classes/mapper/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-user/target/test-classes/com/czkj/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-user/target/test-classes/com/czkj/AppTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-zipkin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/server-zipkin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/server-zipkin/target/classes/META-INF/server-zipkin.kotlin_module" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1axvQJB5lug8dBkT0i6DjnsHyfD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97b83087-c110-4ae8-9a1b-4ee0465ac9ca" name="Default Changelist" comment="" />
+      <created>1587690041225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587690041225</updated>
+      <workItem from="1587690042401" duration="202000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

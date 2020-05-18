@@ -1,0 +1,53 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin@peer1:8761/eureka/
+server:
+  port: 81
+
+spring:
+  application:
+    name: server-oauth2-router
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+    sleuth:
+      sampler:
+        probability: 1.0
+
+zuul:
+  ignored-services:  '*'
+  prefix: /api
+  routes:
+    server-auth-route:
+      path: /oauth/**
+      sensitive-headers:
+      serviceId: SERVER-OAUTH2
+      strip-prefix: false
+    server-sys-route:
+      path: /sys/**
+      serviceId: server-sys
+      strip-prifix: false
+#需要忽略的头部信息，不在传播到其他服务
+  sensitive-headers: Access-Control-Allow-Origin
+  ignored-headers: Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+  max:
+    host:
+      connections: 5000 #最大请求时间
+  host:  #等待
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  #启用负载均衡
+  ribbon:
+    eager-load:
+      enabled: true
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:8763/oauth/token
+      user-authorization-uri: http://localhost:8763/oauth/authorize
+      client-id: client1
+      client-secret: client1
+    resource:
+      jwt:
+        key-uri: http://localhost:8763/oauth/token_key
+        key-value: sdjhakdhajdklsl;o653632

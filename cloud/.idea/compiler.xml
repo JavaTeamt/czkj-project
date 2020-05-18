@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="server-oauth2-router" />
+        <module name="eureka-server" />
+        <module name="server-zipkin" />
+        <module name="common" />
+        <module name="server-oauth2" />
+        <module name="server-web" />
+        <module name="server-sys" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eurekaserver" target="1.8" />
+      <module name="permission-server" target="1.8" />
+      <module name="server-cas" target="1.8" />
+      <module name="server-router" target="1.8" />
+      <module name="server-user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters -parameters" />
+      <module name="eureka-server" options="-parameters -parameters" />
+      <module name="eurekaserver" options="-parameters -parameters" />
+      <module name="permission-server" options="-parameters -parameters" />
+      <module name="server-cas" options="-parameters -parameters" />
+      <module name="server-oauth2" options="-parameters -parameters" />
+      <module name="server-oauth2-router" options="-parameters -parameters" />
+      <module name="server-router" options="-parameters -parameters" />
+      <module name="server-sys" options="-parameters -parameters" />
+      <module name="server-user" options="-parameters -parameters" />
+      <module name="server-web" options="-parameters -parameters" />
+      <module name="server-zipkin" options="-parameters -parameters" />
+    </option>
+  </component>
+</project>

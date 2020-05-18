@@ -1,0 +1,20 @@
+server:
+  port: 9411
+
+spring:
+  application:
+    name: zipkin-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+##cas:
+##  server-url-prefix: http://localhost:8080/cas
+##  server-login-url: http://localhost:8080/cas/login
+##  client-host-url: http://localhost
+##  validation-type: cas
