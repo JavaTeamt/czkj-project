@@ -41,7 +41,7 @@
         <guava.version>25.1-jre</guava.version>
         <xstream.version>1.4.10</xstream.version>
         <io.springfox.version>2.7.0</io.springfox.version>
-        <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <oracle.version>11.2.0.3.0</oracle.version>
         <hanlp.version>portable-1.6.6</hanlp.version>
         <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
