@@ -38,7 +38,7 @@
         <commons-codec.version>1.9</commons-codec.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <lombok.version>1.18.0</lombok.version>
-        <guava.version>25.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <xstream.version>1.4.10</xstream.version>
         <io.springfox.version>2.7.0</io.springfox.version>
         <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
